@@ -1,7 +1,7 @@
 <?php
 //proses
 $lang = "cpp";
-$command1 = "g++ -lm -std=c++0x inputPeserta.cpp -o compilePeserta"; // for compile
+$command1 = "gcc programPeserta.cpp -o compilePeserta"; // for compile
 $command2 = "time compilePeserta <inputSoal.in> outputPemain.out";
 
 echo "Com1 : " . $command1 . "<br>";
