@@ -8,7 +8,7 @@ package soal.soalilpc;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Testing {
+public class Main {
 
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
