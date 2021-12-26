@@ -4,7 +4,7 @@ $runtime = 0;
 
 //proses
 $lang = "cpp";
-$command1 = "clang submission/cpp.cpp -o temp/compiled"; // for compile
+$command1 = "clang++ submission/cpp.cpp -o temp/compiled"; // for compile
 $command2 = "time temp/compiled <soal/cpp.in> temp/result.out";
 
 $descriptorspec = array(
