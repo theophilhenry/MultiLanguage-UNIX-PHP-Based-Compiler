@@ -4,8 +4,8 @@ $runtime = 0;
 
 //proses
 $lang = "cpp";
-$command1 = "clang++ submission/cpp.cpp -o temp/compiled_cpp"; // for compile
-$command2 = "time temp/compiled_cpp <soal/cpp.in> temp/result.out";
+$command1 = 'fpc submission/pascal.pas -o"temp/compiled_pascal"'; // for compile
+$command2 = "time temp/compiled_pascal <soal/pascal.in> temp/result.out";
 
 $descriptorspec = array(
     0 => array("pipe", "r"), // stdin is a pipe that the child will read from
@@ -69,7 +69,7 @@ if ($result == "Accepted") {
 
 //jika tetap masih AC(uda lewat TL), harus dicek sama tidak dengan output yang diinginkan
 if ($result == "Accepted") {
-    $process = proc_open('cmp temp/result.out soal/cpp.out', $descriptorspec, $pipes);
+    $process = proc_open('cmp temp/result.out soal/pascal.out', $descriptorspec, $pipes);
 
     if (is_resource($process)) {
         $return_value = proc_close($process);
