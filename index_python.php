@@ -4,7 +4,7 @@ $runtime = 0;
 
 //proses
 $lang = "python";
-$command2 = "time python3 submission/python.py soal/cpp.in";
+$command2 = "time python3 submission/python.py < soal/python.in";
 
 $descriptorspec = array(
     0 => array("pipe", "r"), // stdin is a pipe that the child will read from
@@ -18,6 +18,10 @@ $time_limit = 120; //15second
 $process = proc_open("bash -c 'ulimit -St $time_limit -Sm $memory_limit ; $command2'", $descriptorspec, $pipes);
 
 if (is_resource($process)) {
+    // fwrite($pipes[0], '19\n');
+    // fwrite($pipes[0], '20');
+    // fclose($pipes[0]);
+
     $stream = stream_get_contents($pipes[2]);
     echo "Stream : " . $stream . "<br>";
     fclose($pipes[2]);
@@ -43,7 +47,7 @@ if (is_resource($process)) {
         echo "Output ".$streamOutput . "<br>";
         fclose($pipes[1]);
 
-        $output = fopen("temp/result.out", "w");
+        $output = fopen("temp/result_python.out", "w");
         fwrite($output, $streamOutput);
         fclose($output);
     }
@@ -62,7 +66,7 @@ if (is_resource($process)) {
 
 //jika tetap masih AC(uda lewat TL), harus dicek sama tidak dengan output yang diinginkan
 if ($result == "Accepted") {
-    $process = proc_open('cmp temp/result.out soal/cpp.out', $descriptorspec, $pipes);
+    $process = proc_open('cmp temp/result_python.out soal/python.out', $descriptorspec, $pipes);
 
     if (is_resource($process)) {
         $return_value = proc_close($process);

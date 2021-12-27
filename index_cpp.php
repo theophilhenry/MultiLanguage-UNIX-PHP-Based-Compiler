@@ -5,7 +5,7 @@ $runtime = 0;
 //proses
 $lang = "cpp";
 $command1 = "clang++ submission/cpp.cpp -o temp/compiled_cpp"; // for compile
-$command2 = "time temp/compiled_cpp <soal/cpp.in> temp/result.out";
+$command2 = "time temp/compiled_cpp <soal/cpp.in> temp/result_cpp.out";
 
 $descriptorspec = array(
     0 => array("pipe", "r"), // stdin is a pipe that the child will read from
@@ -38,7 +38,6 @@ if ($result == "Accepted") {
     
     if (is_resource($process)) {
         $stream = stream_get_contents($pipes[2]);
-        echo "Stream : " . $stream + "<br>";
         fclose($pipes[2]);
 
         $return_value = proc_close($process);
@@ -70,7 +69,7 @@ if ($result == "Accepted") {
 
 //jika tetap masih AC(uda lewat TL), harus dicek sama tidak dengan output yang diinginkan
 if ($result == "Accepted") {
-    $process = proc_open('cmp temp/result.out soal/cpp.out', $descriptorspec, $pipes);
+    $process = proc_open('cmp temp/result_cpp.out soal/cpp.out', $descriptorspec, $pipes);
 
     if (is_resource($process)) {
         $return_value = proc_close($process);
@@ -82,4 +81,4 @@ if ($result == "Accepted") {
 echo "result : " . $result . "<br />";
 echo "runtime : " . $runtime . "<br />";
 
-shell_exec('rm -r temp/*');
+// shell_exec('rm -r temp/*');
