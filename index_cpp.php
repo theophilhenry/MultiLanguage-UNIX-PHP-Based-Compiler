@@ -38,7 +38,7 @@ if ($result == "Accepted") {
     
     if (is_resource($process)) {
         $stream = stream_get_contents($pipes[2]);
-        echo "Stream : " . $stream;
+        echo "Stream : " . $stream + "<br>";
         fclose($pipes[2]);
 
         $return_value = proc_close($process);
@@ -59,6 +59,7 @@ if ($result == "Accepted") {
         }
 
         $str = strstr($stream, "real");
+        $str = str_replace(",", ".", $str);
         $im = strpos($str, "m");
         $is = strpos($str, "s");
         $m = substr($str, 5, $im - 5);
