@@ -4,8 +4,8 @@ $runtime = 0;
 
 //proses
 $lang = "cpp";
-$command1 = "javac submission/java.java -o temp/compiled"; // for compile
-$command2 = "time temp/compiled <soal/cpp.in> temp/result.out";
+$command1 = "javac submission/java.java -d temp"; // for compile
+$command2 = "time java -cp temp Main <soal/java.in> temp/result.out";
 
 $descriptorspec = array(
     0 => array("pipe", "r"), // stdin is a pipe that the child will read from
@@ -69,7 +69,7 @@ if ($result == "Accepted") {
 
 //jika tetap masih AC(uda lewat TL), harus dicek sama tidak dengan output yang diinginkan
 if ($result == "Accepted") {
-    $process = proc_open('cmp temp/result.out soal/cpp.out', $descriptorspec, $pipes);
+    $process = proc_open('cmp temp/result.out soal/java.out', $descriptorspec, $pipes);
 
     if (is_resource($process)) {
         $return_value = proc_close($process);
@@ -80,3 +80,5 @@ if ($result == "Accepted") {
 
 echo "result : " . $result . "<br />";
 echo "runtime : " . $runtime . "<br />";
+
+shell_exec('rm -r temp/*');

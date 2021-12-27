@@ -80,3 +80,5 @@ if ($result == "Accepted") {
 
 echo "result : " . $result . "<br />";
 echo "runtime : " . $runtime . "<br />";
+
+shell_exec('rm -r temp/*');
